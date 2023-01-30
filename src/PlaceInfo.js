@@ -42,7 +42,7 @@ const shareFunc = () => {
             .info{
                 padding: 30px;
                 background-color: #9bedd5;
-                margin: 40px 0 0 0;
+                margin: 40px 0 20px 0;
                 border-radius: 16px;
             }
             .info-card{
