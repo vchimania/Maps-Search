@@ -73,14 +73,16 @@ const shareFunc = () => {
             }
             .metric label{
                 font-size: 40px;
-                margin: 0 20px 0 0;
+                font-weight: 700;
+                margin: 0 10px 0 0;
             }
             .metric span{
                 height: 100%;
                 display: flex;
                 align-items: center;
-                font-size: 35px;
+                font-size: 25px;
                 white-space: nowrap;
+                padding: 0 0 0 25px;
             }
             .share {
                 align-items: center;
@@ -99,8 +101,6 @@ const shareFunc = () => {
                 line-height: 1;
                 list-style: none;
                 overflow: hidden;
-                padding-left: 16px;
-                padding-right: 16px;
                 position: relative;
                 text-align: left;
                 text-decoration: none;
@@ -113,7 +113,6 @@ const shareFunc = () => {
                 font-size: 18px;
                 padding: 20px 40px;
                 align-self: flex-end;
-                margin: 40px 0 0 0;
             }
             .share:focus {
                 box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
@@ -138,10 +137,12 @@ const shareFunc = () => {
                     display: flex;
                     align-items: center;
                     font-size: 15px;
+                    white-space: normal;
                 }
                 .share{
                     margin: 15px 0 0 0;
-                    padding: 15px 40px;
+                    padding: 10px 30px;
+                    font-size: 16px;
                 }
             }
         `}
