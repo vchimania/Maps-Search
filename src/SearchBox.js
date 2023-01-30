@@ -28,6 +28,12 @@ export default function SearchBox(props) {
     }
   }, [query]);
 
+  const checkRecents = () => {
+    let recent = localStorage.getItem("RECENTS");
+    if(recent) return true;
+    return false;
+  }
+
   const searchFunction = (item) => {
     setLoad(true);
     // resetting search list after list item clicked
@@ -137,7 +143,7 @@ export default function SearchBox(props) {
           <div className="load"><div></div><div></div><div></div><div></div></div>
           }
           {(noAdmin && !load && listPlace.length === 0) && (<><h3>No Administrative Boundary found.</h3></>)}
-          <Recents selectPosition={selectPosition} />
+          {checkRecents() && <Recents selectPosition={selectPosition} />}
         </div>
       </div>
       <style>{`

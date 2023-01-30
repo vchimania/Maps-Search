@@ -38,8 +38,8 @@ const Main = () => {
       <style>{`
         .main-container{
           display: flex;
-          width: 100vw;
-          height: 100vh;
+          width: 99vw;
+          height: 99vh;
         }
         .info-cont{
           width: 40vw;

@@ -19,7 +19,7 @@ const goTo = (item) => {
   return (
     <>
         <div className="recents">
-            <span className="heading">Recents</span>
+            <span className="heading">Recent Searches</span>
             <div className="recents-card">
             {recents ? <List component="nav" aria-label="main mailbox folders">
                 {recents.map((item) => {
