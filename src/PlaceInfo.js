@@ -40,6 +40,7 @@ const shareFunc = () => {
         </div>
         <style>{`
             .info{
+                height: 45%;
                 padding: 30px;
                 background-color: #9bedd5;
                 margin: 40px 0 20px 0;
@@ -72,12 +73,14 @@ const shareFunc = () => {
             }
             .metric label{
                 font-size: 40px;
+                margin: 0 20px 0 0;
             }
             .metric span{
                 height: 100%;
                 display: flex;
                 align-items: center;
                 font-size: 35px;
+                white-space: nowrap;
             }
             .share {
                 align-items: center;
