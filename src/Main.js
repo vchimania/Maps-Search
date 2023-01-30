@@ -40,14 +40,17 @@ const Main = () => {
           display: flex;
           width: 100vw;
           height: 100vh;
+          overflow: scroll;
         }
         .info-cont{
           width: 40vw;
           padding: 20px;
+          height: auto;
         }
         .map-cont{
-          height: 100%;
+          height: 80%;
           width: 60vw;
+          align-self: center;
         }
         @media only screen and (max-width: 1200px){
             .main-container{

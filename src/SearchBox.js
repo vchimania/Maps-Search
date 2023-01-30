@@ -251,6 +251,8 @@ export default function SearchBox(props) {
           .load {
             padding: 100px 120px;     
           }
+          .list{
+            height: auto;
         }  
           `}
       </style>
