@@ -30,12 +30,14 @@ export default function SearchBox(props) {
     }
   }, [query]);
 
+  //Show/Hide Recent search toggle
   const checkRecents = () => {
     let recent = localStorage.getItem("RECENTS");
     if(recent) return true;
     return false;
   }
 
+  //function trggere on click of search button
   const searchFunction = (item) => {
     setLoad(true);
     // resetting search list after list item clicked

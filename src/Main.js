@@ -4,7 +4,10 @@ import Maps from "./Maps";
 
 const Main = () => {
 
+    //state value for selected location
     const [selectPosition, setSelectPosition] = useState(null);
+
+    //Media query specification
     const [matches, setMatches] = useState(
         window.matchMedia("(max-width: 1200px)").matches
       )
@@ -17,6 +20,7 @@ const Main = () => {
 
   return (
     <>
+      {/* Desktop View */}
       {!matches && 
       <div className="main-container">
         <div className="info-cont">
@@ -26,6 +30,7 @@ const Main = () => {
           <Maps selectPosition={selectPosition} />
         </div>
       </div>}
+      {/* Mobile View */}
       {matches && 
       <div className="main-container">
         <div className="map-cont">

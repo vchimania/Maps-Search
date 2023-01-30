@@ -6,11 +6,13 @@ const {selectPosition} = props;
 const date = selectPosition?.extratags['population:date'];
 const pop = selectPosition?.extratags?.population
 
+//Year Format
 const getYear = () => {
     if(date) return `(${new Date(date).getFullYear()})`
     return ""
 }
 
+//Format population number
 const getPop = () => {
     if(pop) return pop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     return "No Data"

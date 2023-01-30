@@ -9,6 +9,7 @@ const Recents = () => {
 let recents = JSON.parse(localStorage.getItem("RECENTS"))
 const navigate = useNavigate();
 
+//Send query params in url
 const goTo = (item) => {
     navigate({
         pathname: '/',

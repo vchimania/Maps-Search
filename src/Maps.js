@@ -8,6 +8,7 @@ const icon = L.icon({
   iconSize: [45, 45],
 });
 
+//default position for boston
 const position = [42.364506, -71.038887];
 
 function ResetCenterView(props) {
