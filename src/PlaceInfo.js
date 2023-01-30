@@ -82,7 +82,7 @@ const shareFunc = () => {
                 height: 100%;
                 display: flex;
                 align-items: center;
-                font-size: 25px;
+                font-size: 20px;
                 white-space: nowrap;
                 padding: 0 0 0 25px;
             }
