@@ -48,7 +48,7 @@ const Main = () => {
           height: auto;
         }
         .map-cont{
-          height: 80%;
+          height: inherit;
           width: 60vw;
           align-self: center;
         }

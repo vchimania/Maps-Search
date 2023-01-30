@@ -18,7 +18,7 @@ const getPop = () => {
 
 const shareFunc = () => {
     navigator.clipboard.writeText(window.location.href)
-    alert(`link copied - ${window.location.href}`)
+    alert(`link copied`)
 }
 
   return (
