@@ -18,7 +18,7 @@ const getPop = () => {
 
 const shareFunc = () => {
     navigator.clipboard.writeText(window.location.href)
-    alert("link copied")
+    alert(`link copied - ${window.location.href}`)
 }
 
   return (
@@ -40,7 +40,6 @@ const shareFunc = () => {
         </div>
         <style>{`
             .info{
-                height: 40vh;
                 padding: 30px;
                 background-color: #9bedd5;
                 margin: 40px 0 0 0;
@@ -111,6 +110,7 @@ const shareFunc = () => {
                 font-size: 18px;
                 padding: 20px 40px;
                 align-self: flex-end;
+                margin: 40px 0 0 0;
             }
             .share:focus {
                 box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
@@ -137,7 +137,8 @@ const shareFunc = () => {
                     font-size: 15px;
                 }
                 .share{
-                    padding: 10px 40px;
+                    margin: 15px 0 0 0;
+                    padding: 15px 40px;
                 }
             }
         `}

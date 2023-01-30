@@ -7,6 +7,7 @@ import Divider from "@material-ui/core/Divider";
 import PlaceInfo from './PlaceInfo';
 import Recents from './Recents';
 import { useSearchParams, useLocation } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
 
@@ -21,6 +22,7 @@ export default function SearchBox(props) {
   const searchParams = new URLSearchParams(search);
   const query = searchParams.get("query");
   const [searchParam, setSearchParam] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(query){
@@ -79,6 +81,12 @@ export default function SearchBox(props) {
       let no_duplicates = Array.from(new Set(existing_recents));
       let clean_arr = no_duplicates.filter(i => i)
       localStorage.setItem("RECENTS", JSON.stringify(clean_arr));
+
+      //add query parameter
+      navigate({
+        pathname: '/',
+        search: `?query=${item ? item : searchText}`,
+      });
   }
 
   useEffect(() => {

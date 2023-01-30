@@ -37,7 +37,7 @@ export default function Maps(props) {
     <>
       <MapContainer
         center={position}
-        zoom={8}
+        zoom={5}
         className="map-container"  
       >
         <TileLayer
