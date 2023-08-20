@@ -4,10 +4,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
-import PlaceInfo from './PlaceInfo';
-import Recents from './Recents';
-import { useSearchParams, useLocation } from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
+import PlaceInfo from "./PlaceInfo";
+import Recents from "./Recents";
+import { useSearchParams, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
 
@@ -25,7 +25,7 @@ export default function SearchBox(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(query){
+    if (query) {
       searchFunction(query);
     }
   }, [query]);
@@ -33,15 +33,15 @@ export default function SearchBox(props) {
   //Show/Hide Recent search toggle
   const checkRecents = () => {
     let recent = localStorage.getItem("RECENTS");
-    if(recent) return true;
+    if (recent) return true;
     return false;
-  }
+  };
 
   //function trggere on click of search button
   const searchFunction = (item) => {
     setLoad(true);
     // resetting search list after list item clicked
-    setListPlace([])
+    setListPlace([]);
 
     //Building params for API call
     const params = {
@@ -49,7 +49,7 @@ export default function SearchBox(props) {
       format: "json",
       addressdetails: 1,
       polygon_geojson: 1,
-      extratags:1
+      extratags: 1,
     };
     const queryString = new URLSearchParams(params).toString();
     const requestOptions = {
@@ -61,42 +61,42 @@ export default function SearchBox(props) {
     fetch(`${NOMINATIM_BASE_URL}${queryString}`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        let res = JSON.parse(result)
-        res.map(i => {
-          if(i.type === "administrative"){
-            setListPlace(listPlace => [...listPlace, i]);
-            setNoAdmin(false)
+        let res = JSON.parse(result);
+        res.map((i) => {
+          if (i.type === "administrative") {
+            setListPlace((listPlace) => [...listPlace, i]);
+            setNoAdmin(false);
           } else {
             setLoad(false);
-            setNoAdmin(true)
+            setNoAdmin(true);
           }
-        })
+        });
         setLoad(false);
         setShowOptions(true);
       })
       .catch((err) => console.log("err: ", err));
 
-      // Recents localStorage logic
-      let existing_recents = JSON.parse(localStorage.getItem("RECENTS"));
-      if(existing_recents == null) existing_recents = [];
-      existing_recents = [...existing_recents, searchText];
-      let no_duplicates = Array.from(new Set(existing_recents));
-      let clean_arr = no_duplicates.filter(i => i)
-      localStorage.setItem("RECENTS", JSON.stringify(clean_arr));
+    // Recents localStorage logic
+    let existing_recents = JSON.parse(localStorage.getItem("RECENTS"));
+    if (existing_recents == null) existing_recents = [];
+    existing_recents = [...existing_recents, searchText];
+    let no_duplicates = Array.from(new Set(existing_recents));
+    let clean_arr = no_duplicates.filter((i) => i);
+    localStorage.setItem("RECENTS", JSON.stringify(clean_arr));
 
-      //add query parameter
-      navigate({
-        pathname: '/',
-        search: `?query=${item ? item : searchText}`,
-      });
-  }
+    //add query parameter
+    navigate({
+      pathname: "/",
+      search: `?query=${item ? item : searchText}`,
+    });
+  };
 
   useEffect(() => {
     //clear query param and list on page reload
-    searchParam.delete('query');
+    searchParam.delete("query");
     setSearchParam(searchParam);
-    setListPlace([])
-  },[])
+    setListPlace([]);
+  }, []);
 
   return (
     <>
@@ -104,59 +104,77 @@ export default function SearchBox(props) {
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }} className="field">
             <input
-              placeholder={"Enter Location"}
+              placeholder={"Enter Location / State"}
               value={searchText}
               onChange={(event) => {
-                setSearchText(event.target.value)
+                setSearchText(event.target.value);
               }}
             />
           </div>
           <div
-            style={{ display: "flex", alignItems: "center", padding: "0px 20px" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "0px 20px",
+            }}
           >
             <button
               className="search"
-              onClick={() => {searchFunction()}}
+              onClick={() => {
+                searchFunction();
+              }}
             >
               Search
             </button>
           </div>
         </div>
         <div className="list">
-          {(!load && showOptions) ? 
-          <List component="nav" aria-label="main mailbox folders">
-            {listPlace.map((item) => {
-              return (
-                <div key={item?.place_id}>
-                  <ListItem
-                    button
-                    onClick={() => {
-                      setSelectPosition(item);
-                      setShowOptions(false);
-                    }}
-                  >
-                    <ListItemIcon>
-                      <img
-                        src="./placeholder.png"
-                        alt="Placeholder"
-                        style={{ width: 38, height: 38 }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={item?.display_name} />
-                  </ListItem>
-                  <Divider />
-                </div>
-              );
-            })}
-          </List> : (!load && !showOptions) ? 
-          <PlaceInfo selectPosition={selectPosition} /> :
-          <div className="load"><div></div><div></div><div></div><div></div></div>
-          }
-          {(noAdmin && !load && listPlace.length === 0) && (<><h3>No Administrative Boundary found.</h3></>)}
+          {!load && showOptions ? (
+            <List component="nav" aria-label="main mailbox folders">
+              {listPlace.map((item) => {
+                return (
+                  <div key={item?.place_id}>
+                    <ListItem
+                      button
+                      onClick={() => {
+                        setSelectPosition(item);
+                        setShowOptions(false);
+                      }}
+                    >
+                      <ListItemIcon>
+                        <img
+                          src="./placeholder.png"
+                          alt="Placeholder"
+                          style={{ width: 38, height: 38 }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText primary={item?.display_name} />
+                    </ListItem>
+                    <Divider />
+                  </div>
+                );
+              })}
+            </List>
+          ) : !load && !showOptions ? (
+            <PlaceInfo selectPosition={selectPosition} />
+          ) : (
+            <div className="load">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          )}
+          {noAdmin && !load && listPlace.length === 0 && (
+            <>
+              <h3>No Administrative Boundary found.</h3>
+            </>
+          )}
           {checkRecents() && <Recents selectPosition={selectPosition} />}
         </div>
       </div>
-      <style>{`
+      <style>
+        {`
       .field input {
         width: 100%;
         height: 56px;
